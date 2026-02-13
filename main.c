@@ -68,3 +68,42 @@ void Obstacle() {
   }
   delay(100);
 }
+
+
+
+void avoidObstacle() {
+  Stop();
+  backward();
+  delay(300);
+  Stop();
+
+  // Scan left and right
+  L = leftsee();
+  delay(300);
+  R = rightsee();
+  delay(300);
+  servo.write(spoint); // Center the servo
+  delay(300);
+
+  Serial.print("Left Distance: ");
+  Serial.println(L);
+  Serial.print("Right Distance: ");
+  Serial.println(R);
+
+  if (L > 25 && L > R) {
+    Serial.println("Turning left...");
+    left();
+    delay(700); // Wider turn
+  } else if (R > 25 && R > L) {
+    Serial.println("Turning right...");
+    right();
+    delay(700); // Wider turn
+  } else {
+    Serial.println("Both sides blocked. Moving backward...");
+    backward();
+    delay(500);
+  }
+
+  Stop();
+  delay(200);
+}
