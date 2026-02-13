@@ -190,3 +190,21 @@ int rightsee() {
   Serial.println(distance);
   return distance;
 }
+
+
+// Motor control functions
+void forward() {
+  Serial.println("Motors moving forward.");
+  M1.run(FORWARD);
+  M2.run(FORWARD);
+  M3.run(FORWARD);
+  M4.run(FORWARD);
+}
+
+void backward() {
+  Serial.println("Motors moving backward.");
+  M1.run(BACKWARD);
+  M2.run(BACKWARD);
+  M3.run(BACKWARD);
+  M4.run(BACKWARD);
+}
