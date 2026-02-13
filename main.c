@@ -192,6 +192,23 @@ int rightsee() {
 }
 
 
+void left() {
+  Serial.println("Motors turning left.");
+  M1.run(FORWARD);
+  M2.run(FORWARD);
+  M3.run(BACKWARD);
+  M4.run(BACKWARD);
+}
+
+void right() {
+  Serial.println("Motors turning right.");
+  M1.run(BACKWARD);
+  M2.run(BACKWARD);
+  M3.run(FORWARD);
+  M4.run(FORWARD);
+}
+
+
 // Motor control functions
 void forward() {
   Serial.println("Motors moving forward.");
