@@ -8,6 +8,7 @@
 #define SpeedR 200
 #define spoint 83 // Servo center position
 
+
 char value;
 int distance = 0;
 int Left;
@@ -17,11 +18,14 @@ int R = 0;
 int L1 = 0;
 int R1 = 0;
 
+
 Servo servo;
 AF_DCMotor M1(1);
 AF_DCMotor M2(2);
 AF_DCMotor M3(3);
 AF_DCMotor M4(4);
+
+
 
 void setup()
 {
@@ -38,4 +42,29 @@ void setup()
     // Center the servo
     servo.write(spoint);
     delay(500);
+}
+
+
+
+void Obstacle() {
+  distance = ultrasonic();
+
+  if (distance == -1) {
+    Serial.println("Error: No valid distance reading");
+    // Stop();
+    // return;
+    forward();
+  }
+
+  Serial.print("Distance: ");
+  Serial.println(distance);
+
+  if (distance <= 25) { // If an obstacle is within 25 cm
+    Serial.println("Obstacle detected! Initiating avoidance...");
+    avoidObstacle();
+  } else {
+    Serial.println("Path clear. Moving forward...");
+    forward(); // Move forward if no obstacle is detected
+  }
+  delay(100);
 }
