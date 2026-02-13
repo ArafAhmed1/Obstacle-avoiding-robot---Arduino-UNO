@@ -46,6 +46,7 @@ void setup()
 
 
 
+
 void Obstacle() {
   distance = ultrasonic();
 
@@ -68,6 +69,48 @@ void Obstacle() {
   }
   delay(100);
 }
+
+
+
+
+
+void voicecontrol() {
+  if (Serial.available() > 0) {
+    value = Serial.read();
+    Serial.println(value);
+
+    
+    if (value == '^') {
+      forward();
+    } else if (value == '-') {
+      backward();
+    } else if (value == '>') {
+      L = rightsee();
+      servo.write(spoint);
+      if (L >= 10 ) {
+        left();
+        delay(500);
+        Stop();
+      } else if (L < 10) {
+        Stop();
+      }
+    } else if (value == '<') {
+      R = leftsee();
+      servo.write(spoint);
+      if (R >= 10 ) {
+        right();
+        delay(500);
+        Stop();
+      } else if (R < 10) {
+        Stop();
+      }
+    } else if (value == '*') {
+      Stop();
+    }
+  }
+}
+
+
 
 
 
@@ -109,7 +152,7 @@ void avoidObstacle() {
   Serial.print("Right Distance: ");
   Serial.println(R);
 
-  
+
   if (L > 25 && L > R) {
     Serial.println("Turning left...");
     left();
