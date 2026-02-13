@@ -225,3 +225,12 @@ void backward() {
   M3.run(BACKWARD);
   M4.run(BACKWARD);
 }
+
+
+void Stop() {
+  Serial.println("Motors stopped.");
+  M1.run(RELEASE);
+  M2.run(RELEASE);
+  M3.run(RELEASE);
+  M4.run(RELEASE);
+}
