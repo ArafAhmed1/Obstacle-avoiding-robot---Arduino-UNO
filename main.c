@@ -71,6 +71,25 @@ void Obstacle() {
 
 
 
+void Bluetoothcontrol() {
+  if (Serial.available() > 0) {
+    value = Serial.read();
+    Serial.println(value);
+  }
+  if (value == 'F') {
+    forward();
+  } else if (value == 'B') {
+    backward();
+  } else if (value == 'L') {
+    right();
+  } else if (value == 'R') {
+    left();
+  } else if (value == 'S') {
+    Stop();
+  }
+}
+
+
 void avoidObstacle() {
   Stop();
   backward();
@@ -90,6 +109,7 @@ void avoidObstacle() {
   Serial.print("Right Distance: ");
   Serial.println(R);
 
+  
   if (L > 25 && L > R) {
     Serial.println("Turning left...");
     left();
@@ -107,3 +127,4 @@ void avoidObstacle() {
   Stop();
   delay(200);
 }
+
