@@ -171,3 +171,22 @@ void avoidObstacle() {
   delay(200);
 }
 
+
+
+int leftsee() {
+  servo.write(170); // Look left
+  delay(500); // Allow servo to stabilize
+  int distance = ultrasonic();
+  Serial.print("Left see distance: ");
+  Serial.println(distance);
+  return distance;
+}
+
+int rightsee() {
+  servo.write(10); // Look right
+  delay(500); // Allow servo to stabilize
+  int distance = ultrasonic();
+  Serial.print("Right see distance: ");
+  Serial.println(distance);
+  return distance;
+}
